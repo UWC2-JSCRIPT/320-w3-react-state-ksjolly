@@ -9,42 +9,42 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-/*
-        * Title
-        * Image
-        * Location
-        * Payment information
-        * */
-
-export default function Rental({ title, image, location, payment_info }) {
-    return (
-    <Card sx={{maxWidth:345}}>
-        <CardMedia
-                sx={{height: 140}}
-                image={image}  
-                alt="Rental"             
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {location}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {payment_info}
-                </Typography>
-            </CardContent>
-      <CardActions>
-        <Button size="small">Add to Cart</Button>
-    </CardActions> 
-    </Card>  
-    );
+class Rental extends React.Component {
+    onTrigger = (event) => {
+        console.log(event);
+        this.props.parentCallback(this.props.title);
+        event.preventDefault();
+    }
+    render() {
+        return (
+            <Card sx={{ maxWidth: 345 }}>
+                <CardMedia
+                    sx={{ height: 140 }}
+                    image={this.props.image}
+                    alt="Rental"
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                        {this.props.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        {this.props.location}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        {this.props.payment_info}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small" onClick={this.onTrigger}>Add to Cart</Button>
+                </CardActions>
+            </Card>
+        );
+    }
 }
 
+export default Rental;
 Rental.propTypes = {
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     authorImg: PropTypes.string.isRequired

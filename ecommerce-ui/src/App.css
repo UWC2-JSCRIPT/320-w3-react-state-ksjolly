@@ -1,0 +1,17 @@
+
+
+.wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin-right: 5rem;
+  margin-left: 5rem;
+  max-width: 1100px;
+  gap: 1rem;
+}
+
+.outer-div {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -10,11 +10,26 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 class Rental extends React.Component {
-    onTrigger = (event) => {
-        console.log(event);
-        this.props.parentCallback(this.props.title);
-        event.preventDefault();
+    constructor(props) {
+        super(props)
+        this.state = {
+            cartStatus: "",
+            buttonTtl: "Add to Cart"
+        }
+        this.updateState = this.updateState.bind(this)
     }
+
+    updateState(){
+        this.setState((prevState) => {
+            if(prevState.buttonTtl === "Add to Cart"){
+                return {buttonTtl: "Remove From Cart", cartStatus: "Added to Cart!"}
+            }
+            else {
+                return {buttonTtl: "Add to Cart", cartStatus: ""}
+            }
+        })
+    }
+
     render() {
         return (
             <Card sx={{ maxWidth: 345 }}>
@@ -33,9 +48,12 @@ class Rental extends React.Component {
                     <Typography variant="body2" color="text.secondary">
                         {this.props.payment_info}
                     </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        {this.state.cartStatus}
+                    </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" onClick={this.onTrigger}>Add to Cart</Button>
+                    <Button size="small" onClick={this.updateState}>{this.state.buttonTtl}</Button>
                 </CardActions>
             </Card>
         );
@@ -45,8 +63,7 @@ class Rental extends React.Component {
 export default Rental;
 Rental.propTypes = {
     title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    authorImg: PropTypes.string.isRequired
+    location: PropTypes.string.isRequired,
+    payment_info: PropTypes.string.isRequired,
 
 }

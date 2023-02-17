@@ -8,6 +8,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
+
 
 class Rental extends React.Component {
     constructor(props) {
@@ -53,7 +56,9 @@ class Rental extends React.Component {
                     </Typography>
                 </CardContent>
                 <CardActions>
+                    <ShoppingCartIcon/>
                     <Button size="small" onClick={this.updateState}>{this.state.buttonTtl}</Button>
+
                 </CardActions>
             </Card>
         );

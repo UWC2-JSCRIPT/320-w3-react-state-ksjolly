@@ -25,6 +25,8 @@ class Rental extends React.Component {
     updateState(){
         this.setState((prevState) => {
             if(prevState.buttonTtl === "Add to Cart"){
+                console.log(this.props);
+                this.props.parentCallback(this.props)
                 return {buttonTtl: "Remove From Cart", cartStatus: "Added to Cart!"}
             }
             else {
